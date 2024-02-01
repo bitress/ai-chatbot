@@ -1,0 +1,45 @@
+[
+  {
+    "questions": ["greeting", "hello", "hi"],
+    "responses": [
+      "Hello! Welcome to our institution.",
+      "Greetings! How may I assist you today?",
+      "Hi there! We're glad you reached out. How can we help you?"
+    ]
+  },
+  {
+    "questions": ["admission", "admissions", "apply for admission"],
+    "responses": [
+      "Our admissions office is open from 9 AM to 5 PM, Monday to Friday.",
+      "If you have specific admission-related queries, you can also check our website."
+    ]
+  },
+  {
+    "questions": ["class schedule", "schedule", "timetable"],
+    "responses": [
+      "You can find your class schedule on the student portal.",
+      "Make sure to check for any updates on the class schedule regularly."
+    ]
+  },
+  {
+    "questions": ["financial aid", "scholarships", "tuition"],
+    "responses": [
+      "For information on financial aid and scholarships, please contact our financial aid office.",
+      "Explore our website for details on available scholarships and tuition assistance programs."
+    ]
+  },
+  {
+    "questions": ["campus facilities", "facilities", "services"],
+    "responses": [
+      "Our campus offers a variety of facilities, including libraries, labs, and recreational areas. Feel free to explore!",
+      "Check out our campus services to make the most of your academic experience. If you have any specific inquiries, let us know."
+    ]
+  },
+  {
+    "questions": ["goodbye", "bye"],
+    "responses": [
+      "Goodbye! If you have any more questions, feel free to reach out.",
+      "Goodbye! If you need assistance in the future, don't hesitate to contact us. Thank you for chatting!"
+    ]
+  }
+]
