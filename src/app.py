@@ -1,7 +1,10 @@
+from flask import Flask, render_template, request, jsonify
 import json
 import nltk
 from nltk.tokenize import word_tokenize
 import random
+
+app = Flask(__name__)
 
 
 def preprocess_text(text):
@@ -47,24 +50,36 @@ def simple_chatbot(user_input, rules):
 json_file_path = '../data/knowledge_base.json'
 rules = load_rules_from_json(json_file_path)
 
-while True:
-    user_input = input("You: ")
 
-    if user_input.lower() == 'exit':
-        # Save rules and exit when the user enters 'exit'
-        save_rules_to_json(json_file_path, rules)
-        print("Chatbot: Bye!")
-        break
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_input = request.form['user_input']
+    response = simple_chatbot(user_input, rules)
+
+    return render_template('index.html', user_input=user_input, response=response)
+
+
+@app.route('/teach', methods=['POST'])
+def teach():
+    user_input = request.form['user_input']
+    new_questions = request.form['new_questions'].split(',')
+    new_responses = request.form['new_responses'].split(',')
+
+    # Add the new rule to the rules list
+    rules = add_rule(rules, new_questions, new_responses)
+
+    # Save the updated rules to the JSON file
+    save_rules_to_json(json_file_path, rules)
 
     response = simple_chatbot(user_input, rules)
-    print("Chatbot:", response)
 
-    # Ask the user if they want to teach the chatbot
-    teach_chatbot = input("Do you want to teach me? (yes/no): ").lower()
+    return render_template('index.html', user_input=user_input, response=response)
 
-    if teach_chatbot == 'yes':
-        new_questions = input("Enter new questions (comma-separated): ").split(',')
-        new_responses = input("Enter responses (comma-separated): ").split(',')
 
-        # Add the new rule to the rules list
-        rules = add_rule(rules, new_questions, new_responses)
+if __name__ == '__main__':
+    app.run(debug=True)

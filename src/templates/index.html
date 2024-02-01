@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Simple Chatbot</h1>
+
+    <form action="/chat" method="post">
+        <label for="user_input">User Input:</label>
+        <input type="text" id="user_input" name="user_input" required>
+        <button type="submit">Chat</button>
+    </form>
+
+    {% if user_input %}
+        <p>You: {{ user_input }}</p>
+        <p>Chatbot: {{ response }}</p>
+    {% endif %}
+
+    <hr>
+
+    <form action="/teach" method="post">
+        <label for="user_input_teach">User Input:</label>
+        <input type="text" id="user_input_teach" name="user_input" required>
+
+        <label for="new_questions">New Questions (comma-separated):</label>
+        <input type="text" id="new_questions" name="new_questions" required>
+
+        <label for="new_responses">New Responses (comma-separated):</label>
+        <input type="text" id="new_responses" name="new_responses" required>
+
+        <button type="submit">Teach</button>
+    </form>
+</body>
+</html>
